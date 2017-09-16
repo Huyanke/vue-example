@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <style media="screen">
+
+    </style>
+  </head>
+  <body>
+     <div id="app">
+     <div v-pin.buttom.right="card1.pind">顶住</div>
+     <div v-pin="card2.pind">其他</div>
+     <button @click="card1.pind = !card1.pind">btn</button>
+     </div>
+  </body>
+</html>
+<script src="js/Vue.js"></script>
+<script type="text/javascript">
+
+Vue.directive("pin",function(el,binding) {
+  const pinds = binding.value
+  const position = binding.modifiers
+
+  if(pinds) {
+    el.style.background = 'red'
+    el.style.position = 'fixed'
+    for(var key in position) {
+      if(position[key]) {
+        el.style[key] = '10px'
+      }
+    }
+  }else {
+    el.style.background = ''
+    el.style.position = 'static'
+  }
+
+})
+new Vue({
+  el: "#app",
+  data: {
+    card1: {
+      pind: false
+    },
+    card2: {
+      pind: false
+    }
+  }
+})
+</script>

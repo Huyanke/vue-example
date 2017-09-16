@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="icon" type="image/png" sizes="32x32" href="https://cn.vuejs.org/images/icons/favicon-32x32.png">
+		<script src="js/Vue.js"></script>
+		<title>单项数据流</title>
+	</head>
+	<body>
+		<div id="app">
+	      <custom-component>
+	      	<!--渲染的是父组件的数据-->
+	      	 {{message}}
+	      </custom-component>
+		</div>
+	</body>
+</html>
+<script>
+//	slot 可以替换写在组件里面的内容
+//  可以根据名字替换相应的数据
+    Vue.component("custom-component",{
+    	data() {
+    		return {
+    			message: '我是子组件数据'
+    		}
+    	},
+    	template: `
+    	          <div>
+    	                我是vue
+    	                <slot></slot>
+    	                {{message}}
+    	          </div>
+    	           `
+    })
+    new Vue({
+    	el:'#app',
+    	data: {
+    		message: '我是父组件数据'
+    	}
+    })
+</script>

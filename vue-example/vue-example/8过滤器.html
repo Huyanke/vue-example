@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="app">
+  <input type="text" v-model="price">
+     {{price | currency}}
+
+    </div>
+  </body>
+</html>
+<script src="js/Vue.js"></script>
+<script type="text/javascript">
+
+Vue.filter("currency",function(val,unit) {
+   val = val || 0;
+   unit = unit || "元"
+})
+new Vue({
+  el: "#app",
+  data: {
+    price: 1
+  }
+})
+
+</script>

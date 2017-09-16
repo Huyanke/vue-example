@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="icon" type="image/png" sizes="32x32" href="https://cn.vuejs.org/images/icons/favicon-32x32.png">
+		<script src="js/Vue.js"></script>
+		<title>单项数据流</title>
+	</head>
+	<body>
+		<div id="app">
+		  <custom-component :cont="cont"></custom-component>
+		</div>
+	</body>
+</html>
+<script>
+    
+    Vue.component("custom-component",{
+    	props: ["cont"],
+    	data() {
+    		return {
+    			incrementCont : this.cont  //作为局部这个组件的data的初始值
+    		}
+    	},
+    	computed: {  //用计算属性更新数据变化
+    		incrementCont2() {
+    		   return this.incrementCont
+    		}
+    		
+    	},
+    	template: `<div>
+			    	我是一个自定义组件
+			    	 <input type="button" value="+" @click="ChangePlus"/>
+			    	 <input type="button" value="-" @click="ChangeMinus"/>
+			    	 {{cont}}
+			    	 {{incrementCont2}}
+			       </div>`,
+	    methods: {
+	    	ChangePlus() {
+	    		this.incrementCont ++;
+	    	},
+	    	ChangeMinus() {
+	    		this.incrementCont --;
+	    	}
+	    }
+    })
+    
+	new Vue({
+		el: "#app",
+		data: {
+			cont: 0
+		}
+	})
+	
+</script>

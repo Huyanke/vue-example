@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="icon" type="image/png" sizes="32x32" href="https://cn.vuejs.org/images/icons/favicon-32x32.png">
+		<script src="js/Vue.js"></script>
+		<title>单项数据流</title>
+	</head>
+	<body>
+		<div id="app">
+		  <custom-component>
+		  	<div slot="one">我是替换1</div>
+		  	<div slot="three">我是替换3</div>
+		  	<!--批量插入-->
+		  	<template slot="two">
+		  	  <span >我是替换2</span>
+		  	  <span >我是替换2</span>
+		  	  <div >我是替换2</div>
+		  	  <span >我是替换2</span>
+		  	  <div >我是替换2</div>
+		  	</template>
+		  	
+		  	
+		  </custom-component>
+		</div>
+	</body>
+</html>
+<script>
+//	slot 可以替换写在组件里面的内容
+//  可以根据名字替换相应的数据
+  Vue.component("custom-component",{
+  	  template: ` 
+  	             <div>
+  	               <slot name="one"><p>list1</p></slot>
+  	               <slot name="two"><p>list2</p></slot>
+  	               <slot name="three"><p>list3</p></slot>
+  	             </div>
+  	            `
+  })
+  
+  new Vue({
+  	el: '#app',
+  	
+  })
+
+</script>

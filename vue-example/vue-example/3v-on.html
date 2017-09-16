@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue</title>
+  </head>
+  <body>
+     <div id="app">
+       <h1>{{msg}}</h1>
+       <div>
+          <button v-on:click="onClick" v-on="{mouseenter: onEnter, mouseleave: onLeave}">点击</button>
+          <form action="" v-on:submit.prevent="onSubmit" v-on:keyup.enter="onKeyup">
+             <input type="text">
+             <input type="submit" value="提交">
+          </form>
+       </div>
+     </div>
+  </body>
+</html>
+<script src="js/Vue.js"></script>
+<script type="text/javascript">
+   var app = new Vue({
+     el: '#app',
+     data: {
+       msg: 'Hello Word'
+     },
+     methods: {
+       onClick: function() {
+         console.log('click')
+       },
+       onEnter: function() {
+         console.log('onEnter')
+       },
+       onLeave: function() {
+         console.log('onLeave')
+       },
+       onSubmit: function() {
+         console.log('submit')
+       },
+       onKeyup: function() {
+         console.log('keyup')
+       }
+     }
+
+   })
+</script>

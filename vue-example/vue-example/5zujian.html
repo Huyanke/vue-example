@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue</title>
+  </head>
+  <body>
+      <div id="app">
+        <alert></alert>
+      </div>
+      <div id="app2">
+        <alert2></alert2>
+      </div>
+  </body>
+</html>
+<script src="js/Vue.js"></script>
+<script type="text/javascript">
+
+var alert_comp = {
+  template:`<div><button @click="Alert">alert_comp</button>  </div>`,
+  methods: {
+    Alert() {
+      console.log('alert')
+    }
+  }
+};
+new Vue({
+    el: "#app",
+    components: {
+      alert:{
+        template:`<div><button @click="Alert">alert</button>  </div>`,
+        methods: {
+          Alert() {
+            console.log('alert')
+          }
+        }
+      }
+    }
+  })
+  new Vue({
+    el: "#app2",
+    components: {
+      alert2: alert_comp
+    }
+  })
+</script>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Vue
+    </title>
+    <style media="screen">
+      .liked {
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"><like></like></div>
+     <template id="like-component">
+         <button :class="{liked: liked}" @click="like_click" >☝ {{like_cont}}</button>
+     </template>
+  </body>
+</html>
+<script src="js/Vue.js"></script>
+<script type="text/javascript">
+
+
+  const like = {
+    data() {
+      return {
+        like_cont: 10,
+        liked: false
+      }
+    },
+    template: "#like-component",
+    methods: {
+      like_click() {
+        if(!this.liked){
+            this.like_cont++
+            this.liked = !this.liked
+        }else {
+            this.like_cont--
+            this.liked = !this.liked
+        }
+
+      }
+    }
+  }
+  new Vue({
+    el: "#app",
+    components: {
+      like: like
+    }
+  })
+</script>

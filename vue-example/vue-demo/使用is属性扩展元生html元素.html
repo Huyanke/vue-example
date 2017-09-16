@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="icon" type="image/png" sizes="32x32" href="https://cn.vuejs.org/images/icons/favicon-32x32.png">
+		<script src="js/Vue.js"></script>
+		<title>组件传值</title>
+	</head>
+	<body>
+		<div id="app">
+			<my-component btn-value="显示/隐藏1"></my-component>
+			<my-component btn-value="显示/隐藏2"></my-component>
+			<table border="" cellspacing="" cellpadding="">
+				<tr is="my-component">
+					<my-component btn-value="显示/隐藏3"></my-component>
+				</tr>
+			</table>
+		</div>
+		
+	</body>
+</html>
+<script type="text/javascript">
+	// 注册组件，全局注册
+	Vue.component('my-component', {
+	  data: function() {
+	  	return {
+	  		show: false
+	  	}
+	  },
+	  props: ["btnValue"],
+	  template: `<div>
+	                <input type="button" :value="btnValue" @click="show = !show" />
+	                <h2-list v-show="show"></h2-list>
+	                <h3>{{btnValue}}</h3>
+	            </div>`
+	})
+    
+    Vue.component("h2List",{
+    	template: `<h2>我出现来</h2>`
+    })
+	new Vue({
+		el: "#app"
+	})
+	
+	
+</script>

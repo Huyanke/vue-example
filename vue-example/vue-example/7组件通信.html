@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue</title>
+  </head>
+  <body>
+   <div id="app">
+    <balance></balance>
+   </div>
+  </body>
+</html>
+<script src="js/Vue.js"></script>
+<script type="text/javascript">
+
+Vue.component("balance",{
+  template: `<div>
+        <show @show-balance="show_balance"></show>
+        <div v-if="show">
+          你的余额是23
+        </div>
+  </div>`,
+  data() {
+    return {
+      show: false,
+
+    }
+  },
+  methods: {
+    show_balance(data) {
+      this.show = !this.show
+      console.log(data)
+    }
+  }
+})
+
+Vue.component("show",{
+  template: `<button @click="on_click">显示余额</button>`,
+  methods: {
+    on_click() {
+      this.$emit("show-balance",{a:2,b:3})
+    }
+  }
+})
+ new Vue({
+   el: "#app"
+ })
+</script>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+	<html>
+	  <head>
+	    <meta charset="utf-8">
+		<title>Vue</title>
+		<link rel="icon" type="image/png" sizes="32x32" href="https://cn.vuejs.org/images/icons/favicon-32x32.png">
+		<script src="js/Vue.js"></script>
+	  </head>
+		<body>
+			<div id="app">
+			  <p v-on:click="clickHandle">{{ message }}</p>
+			</div>
+			
+			<script>
+				new Vue({
+				  el: '#app',
+				  data: {
+				    message: 'Hello Vue.js!'
+				  },
+				  methods: {
+				  	clickHandle(){
+				  		console.log('点击我!');
+				  	}
+				  }
+				})
+			</script>
+		</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue</title>
+    <style media="screen">
+      .active {
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+       <h1>{{msg}}</h1>
+       <div>
+          <a v-bind:href="url" v-bind:class="{active:isActive}" >点我</a>
+       </div>
+    </div>
+  </body>
+</html>
+<script src="js/Vue.js"></script>
+<script type="text/javascript">
+   var app = new Vue({
+     el: '#app',
+     data: {
+       msg: 'Hello Word',
+       url: 'http:baidu.com',
+       klass:'btn',
+       isActive: true
+     }
+   })
+
+</script>

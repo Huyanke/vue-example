@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+      vue
+    </title>
+  </head>
+  <body>
+    <!-- lazy懒加载  trim去除空格 number 转换数字 -->
+    <div id="app">
+      <input type="text" v-model="name">
+      {{name}}
+      <br>
+      <label>
+        <input type="radio" value="male" v-model="sex">
+        <input type="radio" value="female" v-model="sex">
+        {{sex}}
+        <br>
+        <div v-if="role == 'admin' || role == 'super_admin'">
+          管理员你好
+        </div>
+        <div v-else-if="role == 'HR'">
+          待查看简历
+        </div>
+      </label>
+    </div>
+  </body>
+</html>
+<script src="js/Vue.js"></script>
+<script type="text/javascript">
+  var vm = new Vue({
+    el: "#app",
+    data: {
+      name: '',
+      sex: {},
+      role: 'super_admin'
+    }
+  })
+</script>

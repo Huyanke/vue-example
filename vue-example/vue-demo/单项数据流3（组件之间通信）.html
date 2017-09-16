@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="icon" type="image/png" sizes="32x32" href="https://cn.vuejs.org/images/icons/favicon-32x32.png">
+		<script src="js/Vue.js"></script>
+		<title>单项数据流</title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>我是父组件</h2>
+			{{cont}}
+		  <custom-component :cont="cont" @incremet-p-click="ContHandleP" @incremet-m-click="ContHandleM"></custom-component>
+		</div>
+	</body>
+</html>
+<script>
+  
+  Vue.component("custom-component",{
+  	props: ["cont"],
+  	data() {
+  		return {
+  			increment : this.cont
+  		}
+  	},
+  	template: `<div>
+  	             <h2>我是子组件</h2>
+  	             <input type="button" value="+" @click="ContChangePlus"/>
+  	             <input type="button" value="-" @click="ContChangeMinus"/>
+  	             {{increment}}
+  	           </div>`,
+  	methods: {
+  		ContChangePlus() {
+  			this.increment ++
+  			this.$emit("incremet-p-click")
+  		},
+  		ContChangeMinus() {
+  			this.increment --
+  			this.$emit("incremet-m-click")
+  		}
+  	}
+  })
+  
+  new Vue({
+  	el: '#app',
+  	data: {
+  		cont: 0
+  	},
+  	methods: {
+  		ContHandleM() {
+  			this.cont ++
+  		},
+  		ContHandleP() {
+  			this.cont --
+  		}
+  	}
+  })
+</script>

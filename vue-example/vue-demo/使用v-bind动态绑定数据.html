@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="icon" type="image/png" sizes="32x32" href="https://cn.vuejs.org/images/icons/favicon-32x32.png">
+		<script src="js/Vue.js"></script>
+		<title>组件传值</title>
+	</head>
+	<body>
+		<div id="app">
+			<my-component btn-value="显示/隐藏1" v-bind:list="list1"></my-component>
+			<my-component btn-value="显示/隐藏2" v-bind:list="list2"></my-component>
+			<table border="" cellspacing="" cellpadding="">
+				<tr is="my-component">
+					<my-component btn-value="显示/隐藏3"></my-component>
+				</tr>
+			</table>
+	
+		</div>
+
+	</body>
+</html>
+<script type="text/javascript">
+	// 注册组件，全局注册
+	Vue.component('my-component', {
+	  data: function() {
+	  	return {
+	  		show: false,
+	  		val: ""
+	  	}
+	  },
+	  props: ["btnValue","list"],
+	  template: `<div>
+	                <input type="button" :value="btnValue" @click="show = !show" />
+	                <input type="text" :value="val" />
+	                <h2-list v-show="show"
+	                :list="list"
+	                v-on:receive="changeValue"
+	                ></h2-list>
+	                <h3>{{btnValue}}</h3>
+	            </div>`,
+
+	   methods: {
+	   	changeValue(value) {
+	   		this.val = value
+	   	}
+	   }
+	})
+
+    Vue.component("h2List",{
+    	props: ["list"],
+    	template: `<ul>
+    	               <li
+    	               v-for="item of list"
+    	               @click="inputValue(item)"
+    	               >
+    	               {{item}}
+    	               </li>
+    	           </ul>`,
+    	methods: {
+    		inputValue: function(item) {
+    			//子组件向父组件传递数据
+    		    //告知父组件，改变val的值，自定义事件
+    		    this.$emit("receive",item)
+    		}
+    	}
+    })
+	new Vue({
+		el: "#app",
+		data: {
+			list1: ["北京","杭州","南京"],
+			list2: ["2015-3","2013-8","2017-4"]
+		}
+	})
+
+
+</script>

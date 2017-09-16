@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="icon" type="image/png" sizes="32x32" href="https://cn.vuejs.org/images/icons/favicon-32x32.png">
+		<script src="js/Vue.js"></script>
+		<title>单项数据流</title>
+	</head>
+	<body>
+		<div id="app">
+		  <custom-component>
+		  	<div>我是html结构</div>
+		  </custom-component>
+		</div>
+	</body>
+</html>
+<script>
+//	slot 可以替换写在组件里面的内容
+  Vue.component("custom-component",{
+  	  template: ` 
+  	             <div>
+  	               <slot>
+	  	               <p>list1</p>
+	  	               <p>list2</p>
+	  	               <p>list3</p>
+  	               </slot>
+  	             </div>
+  	            `
+  })
+  
+  new Vue({
+  	el: '#app',
+  	
+  })
+
+</script>
